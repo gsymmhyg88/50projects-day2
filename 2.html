@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        .all {
+            width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            margin-top: 200px;
+        }
+        .all .allTop {
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+        }
+        .all .allTop div {
+            width: 20px;
+            height: 20px;
+            border-radius: 15px;
+            border: 4px solid rgb(210, 208, 208);
+            text-align: center;
+            line-height: 20px;
+        }
+        .all .allTop div:nth-of-type(1){
+            border-color: cornflowerblue;
+        }
+        .all .allTop span {
+            width: 80px;
+            height: 4px;
+            background-color: rgb(210, 208, 208);
+        }
+        .all .allBottom {
+            display: flex;
+            flex-flow: row;
+            justify-content:center;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+        }
+        .all .allBottom  button {
+            width: 80px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: rgb(210, 208, 208);
+            color: #fff;
+            background-color:cornflowerblue;
+            cursor:pointer;
+        }
+        .all .allBottom  button:nth-of-type(1) {
+            margin-right: 15px;
+            background: rgb(210, 208, 208);
+            cursor:not-allowed
+        }
+
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div class="allTop">
+            <div class="partDiv" num="1">1</div>
+            <span class="partSpan" num="0"></span>
+            <div class="partDiv" num="0">2</div>
+            <span class="partSpan" num="0"></span>
+            <div class="partDiv" num="0">3</div>
+            <span class="partSpan" num="0"></span>
+            <div class="partDiv" num="0">4</div>
+        </div>
+        <div class="allBottom">
+            <button>Prev</button>
+            <button>Next</button>
+        </div>
+    </div>
+    
+    <script>
+        const demo1 = document.querySelectorAll('button')
+        const demo2 = document.querySelectorAll('.partDiv')
+        const demo3 = document.querySelectorAll('.partSpan')
+        let lightNum = 1
+
+        function lightButton(){
+            if(lightNum >= 4){
+                demo1[1].style.cursor = 'not-allowed'
+                demo1[1].style.backgroundColor = 'rgb(210, 208, 208)'  
+            }
+            else if(lightNum <= 1){
+                demo1[0].style.cursor = 'not-allowed'
+                demo1[0].style.backgroundColor = 'rgb(210, 208, 208)'
+            }
+            else{
+                demo1[0].style.cursor = 'pointer'
+                demo1[1].style.cursor = 'pointer'
+                demo1[0].style.backgroundColor = 'cornflowerblue'
+                demo1[1].style.backgroundColor = 'cornflowerblue'
+            }
+        }
+        
+        demo1[0].addEventListener('click',function fn0(){
+            if(lightNum == 1){
+                return false
+            }
+            lightNum--
+            demo2[lightNum ].style.borderColor = "rgb(210, 208, 208)"
+            demo3[lightNum - 1].style.backgroundColor = "rgb(210, 208, 208)"
+            lightButton()
+        })
+        demo1[1].addEventListener('click',function fn1(){
+            if(lightNum == 4){
+                return false
+            }
+            lightNum++
+            demo3[lightNum -2 ].style.backgroundColor = "cornflowerblue"
+            demo2[lightNum -1 ].style.borderColor = "cornflowerblue"
+            lightButton()
+        })
+        
+
+    </script>
+</body>
+</html>
